@@ -49,17 +49,61 @@ const passwordInput = document.getElementById('signupPassword');
 const strengthBar = document.getElementById('strengthBar');
 const strengthText = document.getElementById('strengthText');
 
-function updateStrength(value) {
-  const strength = ['Weak', 'Fair', 'Good', 'Strong'];
-  let index = Math.floor(value / 25);
-  strengthText.textContent = strength[index];
-  strengthBar.style.width = `${value}%`;
+function updateStrength(strength) {
+  let width = 0, color = 'red', text = 'Weak';
+  switch (strength) {
+    case 0:
+    case 1: width = 25; color = '#e53935'; text = 'Weak'; break;
+    case 2: width = 50; color = '#fb8c00'; text = 'Medium'; break;
+    case 3: width = 75; color = '#fdd835'; text = 'Good'; break;
+    case 4: width = 100; color = '#43a047'; text = 'Strong'; break;
+  }
+  strengthBar.style.width = `${width}%`;
+  strengthBar.style.background = color;
+  strengthText.textContent = text;
 }
 
-passwordInput.addEventListener('input', e => {
-  const value = e.target.value.length;
-  if (value < 6) updateStrength(25);
-  else if (value < 12) updateStrength(50);
-  else if (value < 18) updateStrength(75);
-  else updateStrength(100);
+passwordInput?.addEventListener('input', () => {
+  const val = passwordInput.value;
+  let strength = 0;
+  if (val.length >= 6) strength++;
+  if (/[A-Z]/.test(val)) strength++;
+  if (/[0-9]/.test(val)) strength++;
+  if (/[^A-Za-z0-9]/.test(val)) strength++;
+  updateStrength(strength);
 });
+
+// OAuth stub
+document.querySelectorAll('.oauth.google').forEach(btn => {
+  btn.addEventListener('click', () => {
+    showToast('Google OAuth not yet implemented.');
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the toast element
+    const toast = document.getElementById("toast");
+    
+    // Get the Google OAuth buttons
+    const googleOAuthButtons = document.querySelectorAll('.oauth.google');
+  
+    // Function to show toast with a message
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+  
+      // Hide the toast after 3 seconds
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+    }
+  
+    // Add event listeners to Google OAuth buttons
+    googleOAuthButtons.forEach(button => {
+      button.addEventListener("click", function(e) {
+        e.preventDefault(); // Prevent the default action
+        showToast("Google OAuth is not yet enabled.");
+      });
+    });
+  });
+  
