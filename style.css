@@ -277,3 +277,14 @@
     height: auto;
     z-index: 100;
 }
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    display: none; /* Hidden by default */
+  }
+  
+  input.invalid {
+    border: 2px solid red;
+  }
+  
