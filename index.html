@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login / Signup - Pro UI</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/a2e0f1f270.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="bg-animation"></div>
+  <div class="container">
+    <div class="form-card" id="card">
+      
+      <!-- LOGIN FORM -->
+      <div class="form-panel front">
+        <h2>Welcome Back</h2>
+        <form>
+          <div class="input-wrap">
+            <input type="email" required />
+            <label>Email</label>
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="input-wrap">
+            <input type="password" required />
+            <label>Password</label>
+            <i class="fas fa-lock"></i>
+          </div>
+          <button class="btn">Login</button>
+        </form>
+
+        <!-- Google Login -->
+        <div class="oauth-buttons">
+          <button class="oauth google">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo" />
+            Login with Google
+          </button>
+        </div>
+
+        <p class="switch-text">Don’t have an account? <span id="toSignup">Sign up</span></p>
+      </div>
+
+      <!-- SIGNUP FORM -->
+      <div class="form-panel back">
+        <h2>Create Account</h2>
+        <form id="signupForm">
+          <div class="input-wrap">
+            <input type="text" required />
+            <label>Name</label>
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="input-wrap">
+            <input type="email" required />
+            <label>Email</label>
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="input-wrap">
+            <input type="password" id="signupPassword" required />
+            <label>Password</label>
+            <i class="fas fa-lock"></i>
+            <div class="strength-meter" id="strengthMeter">
+              <div class="bar" id="strengthBar"></div>
+              <span id="strengthText">Strength</span>
+            </div>
+          </div>
+          <button class="btn">Sign Up</button>
+        </form>
+
+        <div class="oauth-buttons">
+          <button class="oauth google">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo" />
+            Sign up with Google
+          </button>
+          <button class="oauth facebook">
+            <i class="fab fa-facebook-f"></i>
+            Sign up with Facebook
+          </button>
+        </div>
+
+        <p class="switch-text">Already have an account? <span id="toLogin">Login</span></p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

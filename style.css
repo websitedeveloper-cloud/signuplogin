@@ -1,0 +1,270 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  body {
+    height: 100vh;
+    background: linear-gradient(135deg, #2c5364, #203a43, #0f2027);
+    overflow: hidden;
+  }
+  
+  .bg-animation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.05), transparent),
+                radial-gradient(circle at 70% 70%, rgba(255,255,255,0.03), transparent);
+    animation: pulseBg 10s infinite alternate;
+    z-index: 0;
+  }
+  @keyframes pulseBg {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+  }
+  
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .form-card {
+    width: 400px;
+    height: 620px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+    border-radius: 20px;
+  }
+  
+  .form-panel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 40px 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(25px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transform-style: preserve-3d;
+  }
+  
+  .front {
+    z-index: 2;
+    backface-visibility: hidden;
+  }
+  .back {
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+  }
+  
+  .form-card.flipped {
+    transform: rotateY(180deg);
+  }
+  
+  h2 {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+  }
+  
+  .input-wrap {
+    position: relative;
+  }
+  .input-wrap input {
+    width: 100%;
+    padding: 14px 14px 14px 44px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+  }
+  .input-wrap label {
+    position: absolute;
+    top: 13px;
+    left: 44px;
+    color: #ccc;
+    font-size: 14px;
+    pointer-events: none;
+    transition: 0.3s;
+  }
+  .input-wrap input:focus + label,
+  .input-wrap input:not(:placeholder-shown) + label {
+    top: -10px;
+    left: 38px;
+    font-size: 12px;
+    color: #fff;
+    background: rgba(32, 58, 67, 0.9);
+    padding: 0 6px;
+    border-radius: 4px;
+  }
+  .input-wrap i {
+    position: absolute;
+    left: 15px;
+    top: 16px;
+    color: #ccc;
+    font-size: 16px;
+  }
+  
+  .btn {
+    margin-top: 10px;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+    color: #000;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  }
+  
+  .switch-text {
+    text-align: center;
+    margin-top: 20px;
+    color: #ccc;
+    font-size: 14px;
+  }
+  .switch-text span {
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+  .switch-text span:hover {
+    text-decoration: underline;
+  }
+  
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0f2027;
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+    z-index: 99;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+  .toast.show {
+    opacity: 1;
+    bottom: 50px;
+  }
+  
+  /* Loading Button */
+  .btn.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+  .btn.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 18px;
+    height: 18px;
+    margin: -9px 0 0 -9px;
+    border: 2px solid #000;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+  }
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Strength Meter */
+  .strength-meter {
+    margin-top: 8px;
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+  .strength-meter .bar {
+    height: 100%;
+    width: 0%;
+    background: red;
+    transition: width 0.4s ease, background 0.4s ease;
+  }
+  #strengthText {
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 6px;
+    display: inline-block;
+  }
+  
+  /* OAuth Buttons */
+  .oauth-buttons {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .oauth {
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  .oauth.google {
+    background: #fff;
+    color: #444;
+    border: 1px solid #ccc;
+  }
+  .oauth.google img {
+    width: 20px;
+    height: 20px;
+  }
+  .oauth.facebook {
+    background: #3b5998;
+    color: #fff;
+  }
+  .oauth:hover {
+    transform: scale(1.03);
+  }
+  
+  @media (max-width: 450px) {
+    .form-card {
+      width: 90%;
+      height: 640px;
+    }
+  }
+  
