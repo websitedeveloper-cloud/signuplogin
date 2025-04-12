@@ -288,3 +288,33 @@
     border: 2px solid red;
   }
   
+ /* Toast styles */
+#toast {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 9999; /* High z-index to ensure it is above the modal */
+  left: 50%;
+  top: 30px; /* Position the toast above the window */
+  font-size: 17px;
+  transition: visibility 0.3s, opacity 0.3s ease-in-out;
+}
+
+/* Make the toast visible when the show class is added */
+#toast.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Modal styles - ensure the modal has a lower z-index than the toast */
+#card {
+  position: relative;
+  z-index: 1; /* Lower z-index so the toast shows above */
+  /* other modal styles (like background, etc.) */
+}
