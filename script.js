@@ -107,3 +107,30 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
   
+
+  document.getElementById('email').addEventListener('input', validateEmail);
+
+function validateEmail() {
+  const email = document.getElementById('email').value;
+  const errorMessage = document.getElementById('email-error');
+  const emailInput = document.getElementById('email');
+
+  // Regular expression for basic email validation
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if (!email) {
+    errorMessage.style.display = 'none';
+    emailInput.classList.remove('invalid');
+    return;
+  }
+
+  // Test email against regex
+  if (!emailPattern.test(email)) {
+    errorMessage.style.display = 'block';
+    errorMessage.textContent = 'Please enter a valid email address.';
+    emailInput.classList.add('invalid');
+  } else {
+    errorMessage.style.display = 'none';
+    emailInput.classList.remove('invalid');
+  }
+}
